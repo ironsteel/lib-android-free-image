@@ -1,40 +1,34 @@
-LOCAL_PATH := $(OGRE)
+LOCAL_PATH := $(FREEIMAGE_ROOT)/Source
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := ogre-3d
+LOCAL_MODULE := free-image
 
-LOCAL_C_INCLUDES :=  $(LOCAL_PATH)/include \
-					 $(LOCAL_PATH)/OgreMain/include \
-					 $(LOCAL_PATH)/Components/RTShaderSystem/include \
-					 $(LOCAL_PATH)/RenderSystems/GLES2/include \
-					 $(LOCAL_PATH)/RenderSystems/GLES2/src/GLSLES/include \
-					 $(LOCAL_PATH)/RenderSystems/GLES2/include/Android \
-					 $(LOCAL_PATH)/Plugins/ParticleFX/include \
-					 $(BOOST_ROOT) \
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/Metadata \
+					$(LOCAL_PATH)/DeprecationManager \
+					$(LOCAL_PATH)/OpenEXR/IlmImf \
+					$(LOCAL_PATH)/OpenEXR/Imath \
+					$(LOCAL_PATH)/OpenEXR/Iex \
+					$(LOCAL_PATH)/OpenEXR/Half \
+					$(LOCAL_PATH)/OpenEXR/IlmThread 
+					
+MY_SOURCES := 	$(wildcard $(LOCAL_PATH)/LibJPEG/*.c) \
+				$(wildcard $(LOCAL_PATH)/LibPNG/*.c) \
+				$(wildcard $(LOCAL_PATH)/FreeImage/*.cpp) \
+				$(wildcard $(LOCAL_PATH)/DeprecationManager/*.cpp) \
+				$(wildcard $(LOCAL_PATH)/Metadata/*.cpp) \
+				$(wildcard $(LOCAL_PATH)/FreeImageToolkit/*.cpp) 
 
-MY_SOURCES := 	$(wildcard $(LOCAL_PATH)/OgreMain/src/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/OgreMain/src/Android/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/OgreMain/src/Threading/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/Components/RTShaderSystem/src/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/RenderSystems/GLES2/src/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/RenderSystems/GLES2/src/GLSLES/src*.cpp) \
-				$(wildcard $(LOCAL_PATH)/RenderSystems/GLES2/src/Android/*.cpp) \
-				$(wildcard $(LOCAL_PATH)/PlugIns/ParticleFX/src/*.cpp) 	
-				
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdos.c,'',$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdosa.c,'',$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemmac.c,'',$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibPNG/pngvalid.c,'',$(MY_SOURCES))
+
 LOCAL_SRC_FILES := $(MY_SOURCES:$(LOCAL_PATH)%=%)
 
-
+LOCAL_CFLAGS += -DFREEIMAGE_LIB=1 -DPNG_STATIC=1 -DSTDC_HEADERS=1
 LOCAL_ARM_MODE := arm
-LOCAL_STATIC_LIBRARIES := libzip libpng libfreeimage libft2
-LOCAL_CFLAGS := $(LOCAL_C_INCLUDES:%=-I%) -O3 -DFREEIMAGE_LIB=1 -DOGRE_NONCLIENT_BUILD=1 -DANDROID_NDK -Werror -frtti -fexceptions
-LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -ldl -llog -lz -lGLESv2
 
-$(info ***************INFO***************)
-$(info LOCAL_PATH - $(LOCAL_PATH))
-$(info LOCAL_CFLAGS - $(LOCAL_CFLAGS))
-$(info LOCAL_LDLIBS - $(LOCAL_LDLIBS))
-$(info ***************END INFO***********)
-
+$(info ***************BUILDING free-image ***************)
 
 include $(BUILD_STATIC_LIBRARY)
