@@ -20,7 +20,7 @@
 					<folderInfo id="0.298457817." name="/" resourcePath="">
 						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.540256913" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
 							<targetPlatform id="org.eclipse.cdt.build.core.prefbase.toolchain.540256913.1391096522" name=""/>
-							<builder arguments="${ANDROID_NDK}/ndk-build NDK_DEBUG=1 V=1" buildPath="${workspace_loc:/lib-bullet-physics/jni}" command="bash" id="org.eclipse.cdt.build.core.settings.default.builder.2068564322" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder">
+							<builder arguments="${ANDROID_NDK}/ndk-build NDK_DEBUG=1 V=1" buildPath="${workspace_loc:/lib-android-ogre-3d/jni}" command="bash" id="org.eclipse.cdt.build.core.settings.default.builder.2068564322" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder">
 								<outputEntries>
 									<entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="obj"/>
 								</outputEntries>

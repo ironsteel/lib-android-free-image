@@ -6,9 +6,9 @@ APP_CFLAGS := -DDEBUG
 LOCAL_ARM_MODE := thumb
 
 APP_CPPFLAGS += -frtti -fexceptions
-APP_STL := stlport_static
+APP_STL := gnustl_static
 
-APP_MODULES := 	bullet-physics
+APP_MODULES := ogre-3d
 
 #pass the following flag into ndk-build for more build info
 #NDK_LOG=1

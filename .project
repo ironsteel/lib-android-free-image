@@ -35,7 +35,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
-					<value>${workspace_loc:/lib-bullet-physics/jni}</value>
+					<value>${workspace_loc:/lib-android-ogre-3d/jni}</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
