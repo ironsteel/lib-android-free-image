@@ -19,14 +19,16 @@ MY_SOURCES := 	$(wildcard $(LOCAL_PATH)/LibJPEG/*.c) \
 				$(wildcard $(LOCAL_PATH)/Metadata/*.cpp) \
 				$(wildcard $(LOCAL_PATH)/FreeImageToolkit/*.cpp) 
 
-MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdos.c,'',$(MY_SOURCES))
-MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdosa.c,'',$(MY_SOURCES))
-MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemmac.c,'',$(MY_SOURCES))
-MY_SOURCES := $(subst $(LOCAL_PATH)/LibPNG/pngvalid.c,'',$(MY_SOURCES))
+#ignore these platform specific source files
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdos.c,,$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemdosa.c,,$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibJPEG/jmemmac.c,,$(MY_SOURCES))
+MY_SOURCES := $(subst $(LOCAL_PATH)/LibPNG/pngvalid.c,,$(MY_SOURCES))
 
 LOCAL_SRC_FILES := $(MY_SOURCES:$(LOCAL_PATH)%=%)
 
-LOCAL_CFLAGS += -DFREEIMAGE_LIB=1 -DPNG_STATIC=1 -DSTDC_HEADERS=1
+LOCAL_CFLAGS += -DFREEIMAGE_LIB=1 -DPNG_STATIC=1 -DSTDC_HEADERS=1 
+
 LOCAL_ARM_MODE := arm
 
 $(info ***************BUILDING free-image ***************)
